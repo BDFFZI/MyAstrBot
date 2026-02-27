@@ -22,7 +22,7 @@ class MyPlugin(Star):
     async def on_all_message(self, event: AstrMessageEvent):
 
         message_chain = event.get_messages()
-        logger.info(message_chain.index(0))
+        logger.info(message_chain)
 
         event.continue_event()
 
