@@ -26,7 +26,7 @@ class MyPlugin(Star):
 
     # /hello 指令
     @filter.command("hello")
-    async def helloworld(self, event: AstrMessageEvent):
+    async def hello(self, event: AstrMessageEvent):
         """这是一个 hello 指令"""  # 指令描述
         user_name = event.get_sender_name()
         yield event.plain_result(f"你好，{user_name}！")
