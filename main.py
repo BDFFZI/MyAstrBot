@@ -20,21 +20,11 @@ class MyPlugin(Star):
     # 全局信息过滤器
     @filter.event_message_type(filter.EventMessageType.ALL)
     async def on_all_message(self, event: AstrMessageEvent):
-        # 获取当前机器人
-        umo = event.unified_msg_origin
-        prov_id = await self.context.get_current_chat_provider_id(umo)
-        logger.info(f"当前聊天提供商 ID: {prov_id}")
-
-        # 获取 LLM 响应
-        llm_resp = await self.context.tool_loop_agent(
-            event=event,
-            chat_provider_id=prov_id,
-        )
-        llmResult = llm_resp.completion_text
 
         message_chain = event.get_messages()
-        logger.info(message_chain)
-        yield event.plain_result(f"收到了一条消息。LLM回复: {llmResult}")
+        logger.info(message_chain.index(0))
+
+        event.continue_event()
 
     # /hello 指令
     @filter.command("hello")
